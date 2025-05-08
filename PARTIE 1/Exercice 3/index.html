@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<!-- Déclaration du type de document HTML -->
+<html>
+<head>
+  <title>Test API</title> <!-- Titre de l'onglet du navigateur -->
+</head>
+<body>
+  <!-- Titre principal affiché sur la page -->
+  <h1>Personnages</h1>
+
+  <!-- Liste non ordonnée où les personnages seront ajoutés dynamiquement -->
+  <ul id="list"></ul>
+
+  <script>
+    // Envoi d'une requête GET à l'API FastAPI locale (endpoint /personnages)
+    fetch("http://127.0.0.1:8000/personnages", {
+      headers: {
+        // On ajoute un header "token" obligatoire pour accéder à l'API
+        "token": "super_token_123"
+      }
+    })
+    // Une fois la réponse reçue, on la transforme en objet JSON
+    .then(res => res.json())
+
+    // On traite les données retournées (liste de personnages)
+    .then(data => {
+      // On récupère l'élément <ul> pour y insérer les personnages
+      const ul = document.getElementById("list");
+
+      // Pour chaque personnage dans la liste
+      data.forEach(p => {
+        // Création d’un nouvel élément <li> (élément de liste)
+        const li = document.createElement("li");
+
+        // On insère le nom et l’univers dans le <li>
+        li.textContent = `${p.nom} (${p.univers})`;
+
+        // On ajoute ce <li> à la liste <ul>
+        ul.appendChild(li);
+      });
+    });
+  </script>
+</body>
+</html>
