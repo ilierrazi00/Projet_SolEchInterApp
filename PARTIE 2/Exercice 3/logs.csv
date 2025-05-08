@@ -1,0 +1,7 @@
+timestamp,utilisateur,action,statut
+2025-05-06 08:30:01,alice,connexion,200
+2025-05-06 08:31:05,bob,connexion,200
+2025-05-06 08:31:50,bob,virement,200
+2025-05-06 08:32:02,alice,virement,500
+2025-05-06 08:33:15,charlie,connexion,200
+2025-05-06 08:34:20,charlie,virement,403
